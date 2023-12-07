@@ -1,4 +1,4 @@
-export default function MostrarContato(props) {
+export default function CardContato(props) {
     return (
        
         <div className="conatiner">

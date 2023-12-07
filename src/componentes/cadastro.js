@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import MostrarContato from './mostrarContato'
+import MostrarContato from './cardContato'
+
 export default function Cadastro(){
     const[nome, setNome] = useState('') //hook
     const[email, setEmail] = useState('')
@@ -12,11 +13,11 @@ export default function Cadastro(){
             onChange={txt => setNome(txt.target.value)}/>
 
             <label className="form-label">Informe email</label>
-            <input className="form-control" type="text" placeholder="Informe nome"value={email} 
+            <input className="form-control" type="text" placeholder="Informe email"value={email} 
             onChange={txt => setEmail(txt.target.value)}/>
 
             <label className="form-label">Informe telefone</label>
-            <input className="form-control" type="text" placeholder="Informe nome"value={fone} 
+            <input className="form-control" type="text" placeholder="Informe fone"value={fone} 
             onChange={txt => setFone(txt.target.value)}/>
 
             <div className="mt-3 d-flex justify-content-between">
@@ -24,9 +25,7 @@ export default function Cadastro(){
                 <button className="btn btn-danger">Cancelar</button><hr/>
             </div>
 
-            <MostrarContato
-                contato={{nome, email, fone}}
-            />
+           
                 
 
             
