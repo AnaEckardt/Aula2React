@@ -1,15 +1,18 @@
-import logo from './logo.svg';
-import Pai from './componentes/pai';
-import Cadastro from './componentes/cadastro';
-import MostrarContato from './componentes/cardContato';
-import Consulta from './componentes/consulta';
+import { Link, Outlet } from 'react-router-dom';
 
 function App() {
     return (
     <div className="App">
       {/*<Pai/>*/}  {/*chamamos o componente pai */}
-      <Cadastro />
-      <Consulta />
+      <h1>Agenda</h1>
+      <hr/>
+      <nav>
+        <Link to="/contatos/cadastrar">Cadastro</Link> &nbsp;
+        <Link to="/contatos/consultar">Consulta</Link> &nbsp;
+      </nav>
+      <main>
+        <Outlet />
+      </main>
       
     </div>
   );

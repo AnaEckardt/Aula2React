@@ -1,34 +1,50 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
 
-export default function Cadastro(){
+
+export default function Edicao(){
    
     const[nome, setNome] = useState('')
     const[email, setEmail] = useState('')
     const[fone, setFone] = useState('')
 
+    const { idContato } = useParams
+
     function salvar(){
 
-       
-    	if(nome === ''){
-    		alert('Informe nome')    		
-    		return
-    	}
-       
-        let obj = {nome, email, fone}
 
-        fetch('http://localhost:8080/contatos',
-        {
-            method: 'post',
-            headers : {'Content-Type':'application/json'},
-            body: JSON.stringify(obj)
-
-        })
-        .then(x=> alert('contato criado com sucesso'))        
+    let obj = {id:idContato, nome, email, fone}
+ 
+        if (nome === '') {
+            alert('Informe nome')
+            return
+        }            
+ 
+        fetch(`http://localhost:8080/contatos/${idContato}`,
+            {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(obj)
+ 
+            })
+            .then(x => alert('contato alterado com sucesso'))
     }
+ 
+    useEffect(() => {  
+            fetch(`http://localhost:8080/contatos/${idContato}`)
+            .then(data => data.json())
+            .then(response => {
+                setNome(response.nome)
+                setEmail(response.email)
+                setFone(response.fone)
+             })
+    },
+    [])
+    
     return(
         <div className="container">
             
-            <h2 className="text-center">Novo Contato</h2>
+            <h2 className="text-center">Editar Contato: {idContato} </h2>
             
             <label className="form-label">Informe nome</label>
             <input 
